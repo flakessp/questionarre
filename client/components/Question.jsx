@@ -13,10 +13,11 @@ export default class Question extends React.Component {
         <div className="row">
           <div className="col-md-12">
             <form action="">
-              <p className="lead">Вариант 1</p>
-              <p className="lead">Вариант 2</p>
-              <p className="lead">Вариант 3</p>
-              <p className="lead">Вариант 4</p>
+            {
+              this.props.answers.map(function(answer) {
+                return <p className="lead">{answer}</p>
+              })
+            }
               <button type="submit" className="btn btn-default">Submit</button>
             </form>
           </div>
