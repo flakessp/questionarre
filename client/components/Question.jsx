@@ -16,34 +16,20 @@ export default class Question extends React.Component {
             answerGiven: true
         })
     }
-  }
-
-  componentDidUpdate(){
-    this.setState({
-      answerGiven: false
-    })
-  }
-
+  } 
   render() {
-    let answerGiven = this.props.answerGiven
-    let answerVariants = this.props.answers.map((answer, index) => {
+    let answerGiven = this.props.answerGiven;
+    let answerVariants = this.props.question.variants.map((answer, index) => {
         return <p onClick={this.state.answerGiven ? null : this.checkAnswer.bind(this, index)} key={index}>{answer}</p>
-    })
+    });
+    let question = this.props.question;
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <h6>Вопрос {this.props.index} из {this.props.length}</h6>
-            <h2>{this.props.title}</h2>
-            <p className="lead">{this.props.body}</p>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-12">
-            {answerVariants}
-            <button className="btn btn-default" onClick={this.props.nextQuestion}>Следующий вопрос</button>
-          </div>
+      <div>
+          <h2>{question.title}</h2>
+        <div>
+          {answerVariants}
+          <button onClick={this.props.nextQuestion}>Следующий вопрос</button>
         </div>
       </div>
     )
@@ -51,11 +37,5 @@ export default class Question extends React.Component {
 }
 
 Question.propTypes = {
-  answers: React.PropTypes.array.isRequired,
-  title: React.PropTypes.string.isRequired,
-  index: React.PropTypes.number.isRequired,
-  length: React.PropTypes.number.isRequired,
-  nextQuestion: React.PropTypes.func.isRequired,
-  handleAnswer: React.PropTypes.func.isRequired,
   question: React.PropTypes.object.isRequired
 }

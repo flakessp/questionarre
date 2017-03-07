@@ -1,6 +1,7 @@
 import React from 'react';
 import Question from './Question.jsx';
 import Result from './QuizResult.jsx';
+import Header from './Header.jsx';
 
 
 export default class App extends React.Component {
@@ -25,18 +26,20 @@ export default class App extends React.Component {
   }
 
   render() {
-    var selectedId = this.state.currentQuestionId;
-    var question = this.props.questions[selectedId-1];
+    let currentQuestionId = this.state.currentQuestionId;
+    let currentQuestion = this.props.questions[currentQuestionId-1];
+    let totalQuestionsNum = this.props.questions.length;
 
-    if(selectedId > this.props.questions.length) {
+    if(currentQuestionId > totalQuestionsNum) {
       return (
-        <Result correct={this.state.correctAnswers} total={this.props.questions.length}/>
+        <Result correct={this.state.correctAnswers} total={totalQuestionsNum}/>
       )
     }
-
     return (
-      // передавать объект
-      <Question answers={question.variants} title={question.title} index={question.id} length={this.props.questions.length} nextQuestion={this.nextQuestion} handleAnswer={this.handleAnswer} answerGiven={this.state.answerGiven} question={question}/>
+      <div>
+        <Header current={currentQuestionId} total={totalQuestionsNum} />
+        <Question question={currentQuestion} handleAnswer={this.handleAnswer} nextQuestion={this.nextQuestion} key={currentQuestion.id}/>
+      </div>
     )
   }
 }
