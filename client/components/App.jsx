@@ -1,20 +1,26 @@
 import React from 'react';
 import Question from './Question.jsx';
+import Result from './QuizResult.jsx';
+
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentQuestionId: 1
+      currentQuestionId: 1,
+      correctAnswers: 0,
     }
     this.nextQuestion = () => {
       this.setState({
         currentQuestionId: this.state.currentQuestionId+1,
       })
     }
-    this.checkAnswer = (index) => {  
-      if(index == this.props.questions[this.state.currentQuestionId].correctAnswer-1)
-        console.log('correct');
+    this.checkAnswer = (index) => {
+      if(index == this.props.questions[this.state.currentQuestionId-1].correctAnswer-1){
+        this.setState({
+            correctAnswers: this.state.correctAnswers + 1
+        })
+      }
       else console.log('wrong!');
     }
   }
@@ -24,7 +30,9 @@ export default class App extends React.Component {
     var question = this.props.questions[selectedId-1];
 
     if(selectedId > this.props.questions.length) {
-      return (<div>Конец теста</div>)
+      return (
+        <Result correct={this.state.correctAnswers} total={this.props.questions.length}/>
+      )
     }
 
     return (
