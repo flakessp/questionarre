@@ -15,13 +15,12 @@ export default class App extends React.Component {
         currentQuestionId: this.state.currentQuestionId+1,
       })
     }
-    this.checkAnswer = (index) => {
-      if(index == this.props.questions[this.state.currentQuestionId-1].correctAnswer-1){
+    this.handleAnswer = (summary) => {
+      if(summary) {
         this.setState({
-            correctAnswers: this.state.correctAnswers + 1
+          correctAnswers: this.state.correctAnswers + 1,
         })
       }
-      else console.log('wrong!');
     }
   }
 
@@ -36,7 +35,8 @@ export default class App extends React.Component {
     }
 
     return (
-      <Question answers={question.variants} title={question.title} index={question.id} length={this.props.questions.length} nextQuestion={this.nextQuestion} checkAnswer={this.checkAnswer}/>
+      // передавать объект
+      <Question answers={question.variants} title={question.title} index={question.id} length={this.props.questions.length} nextQuestion={this.nextQuestion} handleAnswer={this.handleAnswer} answerGiven={this.state.answerGiven} question={question}/>
     )
   }
 }
