@@ -1,3 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font: 14px/24px "Gotham Rounded A", "Gotham Rounded B", "Gotham Rounded", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
 .question {
-    color: green;
+    .selected {
+        color: black;
+    }
+    &__block{
+        color: #6c6c6c;
+        &:hover {
+            color: black;
+        }
+    }
 }

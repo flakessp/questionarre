@@ -1,12 +1,11 @@
 import React from 'react';
 
-require('../styles/app.scss');
-
 export default class Question extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      answerGiven: false
+      answerGiven: false,
+      selectedAnswer: null
     }
     this.checkAnswer = (index) => {
       if(index == this.props.question.correctAnswer-1){
@@ -15,16 +14,16 @@ export default class Question extends React.Component {
         this.props.handleAnswer(false)
       }
       this.setState({
-            answerGiven: true
-        })
+          answerGiven: true,
+          selectedAnswer: index
+      })
     }
   } 
   render() {
     let answerGiven = this.props.answerGiven;
-    let answerClasName = this.state.answerGiven ? 'disabled' : '';
     let answerVariants = this.props.question.variants.map((answer, index) => {
         return (
-        <p className={answerClasName} 
+        <p className={this.state.selectedAnswer==index && this.state.answerGiven ? 'question__block selected' : 'question__block' } 
           onClick={
             this.state.answerGiven 
             ? null 
@@ -39,7 +38,8 @@ export default class Question extends React.Component {
           <h2>{question.title}</h2>
         <div>
           {answerVariants}
-          <button onClick={this.props.nextQuestion}>Следующий вопрос</button>
+          <button 
+          onClick={this.props.nextQuestion} disabled={!this.state.answerGiven}>Следующий вопрос</button>
         </div>
       </div>
     )

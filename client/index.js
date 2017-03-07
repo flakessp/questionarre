@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App.jsx';
 
+require('./styles/app.scss');
+
 const QUESTIONS = [
   {
     id: 1,
