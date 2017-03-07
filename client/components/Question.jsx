@@ -1,5 +1,7 @@
 import React from 'react';
 
+require('../styles/app.scss');
+
 export default class Question extends React.Component {
   constructor(props) {
     super(props);
@@ -19,13 +21,21 @@ export default class Question extends React.Component {
   } 
   render() {
     let answerGiven = this.props.answerGiven;
+    let answerClasName = this.state.answerGiven ? 'disabled' : '';
     let answerVariants = this.props.question.variants.map((answer, index) => {
-        return <p onClick={this.state.answerGiven ? null : this.checkAnswer.bind(this, index)} key={index}>{answer}</p>
+        return (
+        <p className={answerClasName} 
+          onClick={
+            this.state.answerGiven 
+            ? null 
+            : this.checkAnswer.bind(this, index)
+          } key={index}>{answer}
+        </p>)
     });
     let question = this.props.question;
 
     return (
-      <div>
+      <div className="question">
           <h2>{question.title}</h2>
         <div>
           {answerVariants}
