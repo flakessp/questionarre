@@ -2,20 +2,24 @@ import React from 'react';
 import Question from './Question.jsx';
 
 export default class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      currentQuestion: 1
+      currentQuestionId: 1
+    }
+    this.nextQuestion = () => {
+      this.setState({
+        currentQuestionId: this.state.currentQuestionId+1
+      })
     }
   }
+
   render() {
+    var selectedId = this.state.currentQuestionId;
+    var question = this.props.questions[selectedId-1];
+
     return (
-      // return question according to state
-      <div>
-        {this.props.questions.map(function(question, index, array) {
-          return <Question title={question.title} answers={question.variants} index={index+1} length={array.length} key={question.id}/>
-        })}
-      </div>
+      <Question answers={question.variants} title={question.title} index={question.id} length={this.props.questions.length} nextQuestion={this.nextQuestion}/>
     )
   }
 }
