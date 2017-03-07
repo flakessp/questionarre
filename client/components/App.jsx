@@ -18,6 +18,11 @@ export default class App extends React.Component {
     var selectedId = this.state.currentQuestionId;
     var question = this.props.questions[selectedId-1];
 
+    if(selectedId > this.props.questions.length) {
+      // если вопросы закончились вернуть страницу результатов
+      return null
+    }
+
     return (
       <Question answers={question.variants} title={question.title} index={question.id} length={this.props.questions.length} nextQuestion={this.nextQuestion}/>
     )
