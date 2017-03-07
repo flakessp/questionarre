@@ -8,14 +8,16 @@ const QUESTIONS = [
     title: "Какой атрибут указывает на путь к файлу для тега <img>",
     variants: [
       'alt', 'href', 'link', 'src'
-    ]
+    ],
+    correctAnswer: 4
   },
   {
     id: 2,
     title: "Что из следующего является ненумерованным списком?",
     variants: [
       '<ol>', '<ul>', '<a>', '<li>'
-    ]
+    ],
+    correctAnswer: 2
   },
 ]
 

@@ -3,9 +3,8 @@ import React from 'react';
 export default class Question extends React.Component {
   constructor(props) {
     super(props)
-
-
   }
+
   render() {
     return (
       <div className="container">
@@ -18,8 +17,8 @@ export default class Question extends React.Component {
         </div>
         <div className="row">
           <div className="col-md-12">
-            {this.props.answers.map(function(answer, index) {
-                return <p className="lead" key={index}>{answer}</p>
+            {this.props.answers.map((answer, index) => {
+                return <p className="lead" onClick={this.props.checkAnswer.bind(this, index)} key={index}>{answer}</p>
             })}
             <button className="btn btn-default" onClick={this.props.nextQuestion}>Следующий вопрос</button>
           </div>
@@ -34,5 +33,6 @@ Question.propTypes = {
   title: React.PropTypes.string.isRequired,
   index: React.PropTypes.number.isRequired,
   length: React.PropTypes.number.isRequired,
-  nextQuestion: React.PropTypes.func.isRequired
+  nextQuestion: React.PropTypes.func.isRequired,
+  checkAnswer: React.PropTypes.func.isRequired
 }

@@ -9,8 +9,13 @@ export default class App extends React.Component {
     }
     this.nextQuestion = () => {
       this.setState({
-        currentQuestionId: this.state.currentQuestionId+1
+        currentQuestionId: this.state.currentQuestionId+1,
       })
+    }
+    this.checkAnswer = (index) => {  
+      if(index == this.props.questions[this.state.currentQuestionId].correctAnswer-1)
+        console.log('correct');
+      else console.log('wrong!');
     }
   }
 
@@ -19,12 +24,11 @@ export default class App extends React.Component {
     var question = this.props.questions[selectedId-1];
 
     if(selectedId > this.props.questions.length) {
-      // если вопросы закончились вернуть страницу результатов
-      return null
+      return (<div>Конец теста</div>)
     }
 
     return (
-      <Question answers={question.variants} title={question.title} index={question.id} length={this.props.questions.length} nextQuestion={this.nextQuestion}/>
+      <Question answers={question.variants} title={question.title} index={question.id} length={this.props.questions.length} nextQuestion={this.nextQuestion} checkAnswer={this.checkAnswer}/>
     )
   }
 }
@@ -33,6 +37,7 @@ App.propTypes = {
   questions: React.PropTypes.arrayOf(React.PropTypes.shape({
     id: React.PropTypes.number.isRequired,
     title: React.PropTypes.string,
-    variants: React.PropTypes.array
+    variants: React.PropTypes.array,
+    correctAnswer: React.PropTypes.number.isRequired,
   })).isRequired
 }
