@@ -12,8 +12,22 @@ body {
     }
     &__block{
         color: #6c6c6c;
+        cursor: pointer;
         &:hover {
             color: black;
+        }
+    }
+    button, .disclaimer {
+        display: inline-block;
+        width: 50%;
+    }
+
+    .disclaimer {
+        &_show {
+            opacity: 1;
+        }
+        &_hide {
+            opacity: 0;
         }
     }
 }
