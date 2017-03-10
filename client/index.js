@@ -2,13 +2,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// Components
-import App from './components/App.jsx';
-
-// Question
-import HTML from './questions/html';
+// Router
+import routes from './router';
 
 // Styles
 require('./styles/app.scss');
 
-ReactDOM.render(<App questions={HTML}/>, document.getElementById('root'));
+ReactDOM.render(routes, document.getElementById('root'));
