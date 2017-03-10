@@ -1,26 +1,14 @@
+// Libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+// Components
 import App from './components/App.jsx';
 
+// Question
+import HTML from './questions/html';
+
+// Styles
 require('./styles/app.scss');
 
-const QUESTIONS = [
-  {
-    id: 1,
-    title: "Какой атрибут указывает на путь к файлу для тега <img>",
-    variants: [
-      'alt', 'href', 'link', 'src'
-    ],
-    correctAnswer: 4
-  },
-  {
-    id: 2,
-    title: "Что из следующего является ненумерованным списком?",
-    variants: [
-      '<ol>', '<ul>', '<a>', '<li>'
-    ],
-    correctAnswer: 2
-  },
-]
-
-ReactDOM.render(<App questions={QUESTIONS}/>, document.getElementById('root'));
+ReactDOM.render(<App questions={HTML}/>, document.getElementById('root'));

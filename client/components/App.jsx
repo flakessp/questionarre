@@ -1,10 +1,22 @@
+// Libraries
 import React from 'react';
+
+// Components
 import Question from './Question.jsx';
 import Result from './QuizResult.jsx';
 import Header from './Header.jsx';
 
 
 export default class App extends React.Component {
+  static PropTypes = {
+    questions: React.PropTypes.arrayOf(React.PropTypes.shape({
+      id: React.PropTypes.number.isRequired,
+      title: React.PropTypes.string,
+      variants: React.PropTypes.array,
+      correctAnswer: React.PropTypes.number.isRequired,
+    })).isRequired
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -26,15 +38,17 @@ export default class App extends React.Component {
   }
 
   render() {
-    let currentQuestionId = this.state.currentQuestionId;
+    const {currentQuestionId, correctAnswers} = this.state;
+
     let currentQuestion = this.props.questions[currentQuestionId-1];
     let totalQuestionsNum = this.props.questions.length;
 
     if(currentQuestionId > totalQuestionsNum) {
       return (
-        <Result correct={this.state.correctAnswers} total={totalQuestionsNum}/>
+        <Result correct={correctAnswers} total={totalQuestionsNum}/>
       )
     }
+
     return (
       <div>
         <Header current={currentQuestionId} total={totalQuestionsNum} />
@@ -42,13 +56,4 @@ export default class App extends React.Component {
       </div>
     )
   }
-}
-
-App.propTypes = {
-  questions: React.PropTypes.arrayOf(React.PropTypes.shape({
-    id: React.PropTypes.number.isRequired,
-    title: React.PropTypes.string,
-    variants: React.PropTypes.array,
-    correctAnswer: React.PropTypes.number.isRequired,
-  })).isRequired
 }
