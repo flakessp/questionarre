@@ -2,6 +2,9 @@ import React from 'react';
 import Disclaimer from './Disclaimer.jsx'
 
 export default class Question extends React.Component {
+  static PropTypes = {
+    question: React.PropTypes.object.isRequired
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -25,21 +28,22 @@ export default class Question extends React.Component {
     }
   } 
   render() {
-    let answerGiven = this.props.answerGiven;
+    const {question, nextQuestion} = this.props,
+          {selectedAnswer, answerGiven, answerIsCorrect} = this.state;
+    
     let answerVariants = this.props.question.variants.map((answer, index) => {
         return (
-          <p className={this.state.selectedAnswer==index && this.state.answerGiven ? 'question__block selected' : 'question__block'} 
+          <p className={selectedAnswer==index && answerGiven ? 'question__block selected' : 'question__block'} 
 
-          onClick={this.state.answerGiven ? null : this.checkAnswer.bind(this, index)} key={index}> {answer} </p>
+          onClick={answerGiven ? null : this.checkAnswer.bind(this, index)} key={index}> {answer} </p>
         )
     });
-    let question = this.props.question;
-    let button = <button onClick={this.props.nextQuestion} disabled={!this.state.answerGiven}>Следующий вопрос</button>
+    let button = <button onClick={nextQuestion} disabled={!answerGiven}>Следующий вопрос</button>
 
     return (
       <div className="question">
           <h2>{question.title}</h2>
-          <Disclaimer correct={this.state.answerIsCorrect} answerIsGiven={this.state.answerGiven}/>
+          <Disclaimer correct={answerIsCorrect} answerIsGiven={answerGiven}/>
           {button}
         <div>
           {answerVariants}
@@ -49,6 +53,4 @@ export default class Question extends React.Component {
   }
 }
 
-Question.propTypes = {
-  question: React.PropTypes.object.isRequired
-}
+
