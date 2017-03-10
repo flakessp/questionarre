@@ -1,10 +1,14 @@
+// Libraries
 import React from 'react';
+
+// Components
 import Disclaimer from './Disclaimer.jsx'
 
 export default class Question extends React.Component {
   static PropTypes = {
     question: React.PropTypes.object.isRequired
   }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -27,6 +31,7 @@ export default class Question extends React.Component {
       })
     }
   } 
+  
   render() {
     const {question, nextQuestion} = this.props,
           {selectedAnswer, answerGiven, answerIsCorrect} = this.state;
