@@ -25,7 +25,8 @@
     "style-loader": "^0.13.2"
   },
   "scripts": {
-    "start": "webpack-dev-server --history-api-fallback"
+    "start" : "node server/app.js",
+    "dev": "webpack-dev-server --history-api-fallback"
   },
   "keywords": [],
   "author": "Sergei Panfilov <s.panfilov@maximatelecom.ru>",
