@@ -8,14 +8,6 @@ import Header from './Header.jsx';
 
 
 export default class Quiz extends React.Component {
-  // static PropTypes = {
-  //   questions: React.PropTypes.arrayOf(React.PropTypes.shape({
-  //     id: React.PropTypes.number.isRequired,
-  //     title: React.PropTypes.string,
-  //     variants: React.PropTypes.array,
-  //     correctAnswer: React.PropTypes.number.isRequired,
-  //   })).isRequired
-  // }
 
   constructor(props) {
     super(props);
