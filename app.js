@@ -3,5 +3,5 @@ const express = require('express'),
       port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-  res.send('<h1>Hello</h1>');
+  res.sendFile('dist/index.html' , { root : __dirname});
 })
