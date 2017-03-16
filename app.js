@@ -3,9 +3,5 @@ const express = require('express'),
       port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-  res.send('Hello Digital Ocean!')
+  res.send('<h1>Hello</h1>');
 })
-
-app.listen(port, () => {
-  console.log('Magic is happening on port 3000!')
-});

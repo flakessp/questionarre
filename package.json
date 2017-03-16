@@ -10,8 +10,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-router": "^3.0.2",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.1"
+    "webpack": "^2.2.1"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
@@ -22,10 +21,11 @@
     "css-loader": "^0.26.2",
     "node-sass": "^4.5.0",
     "sass-loader": "^6.0.2",
-    "style-loader": "^0.13.2"
+    "style-loader": "^0.13.2",
+    "webpack-dev-server": "^2.4.1"
   },
   "scripts": {
-    "start" : "node server/app.js",
+    "start" : "node app.js",
     "dev": "webpack-dev-server --history-api-fallback"
   },
   "keywords": [],
